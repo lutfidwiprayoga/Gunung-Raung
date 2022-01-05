@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="361" height="111" viewBox="0 0 361 111">
+  <g id="Group_7" data-name="Group 7" transform="translate(-146 -500)">
+    <g id="Rectangle_4" data-name="Rectangle 4" transform="translate(146 500)" fill="#235754" stroke="#fff" stroke-width="1">
+      <rect width="238" height="38" stroke="none"/>
+      <rect x="0.5" y="0.5" width="237" height="37" fill="none"/>
+    </g>
+    <g id="Rectangle_5" data-name="Rectangle 5" transform="translate(383 500)" fill="#235754" stroke="#fff" stroke-width="1">
+      <rect width="124" height="38" stroke="none"/>
+      <rect x="0.5" y="0.5" width="123" height="37" fill="none"/>
+    </g>
+    <g id="Rectangle_6" data-name="Rectangle 6" transform="translate(146 537)" fill="#d9cfcf" stroke="#fff" stroke-width="1">
+      <rect width="238" height="38" stroke="none"/>
+      <rect x="0.5" y="0.5" width="237" height="37" fill="none"/>
+    </g>
+    <g id="Rectangle_7" data-name="Rectangle 7" transform="translate(383 537)" fill="#d9cfcf" stroke="#fff" stroke-width="1">
+      <rect width="124" height="38" stroke="none"/>
+      <rect x="0.5" y="0.5" width="123" height="37" fill="none"/>
+    </g>
+    <text id="Tarif_Tiket_Masuk_MT._Raung_" data-name="Tarif Tiket Masuk MT. Raung " transform="translate(188 524)" fill="#fff" font-size="14" font-family="Oswald-Regular, Oswald" letter-spacing="0.005em"><tspan x="0" y="0">Tarif Tiket Masuk MT. Raung </tspan></text>
+    <text id="Harga" transform="translate(430 525)" fill="#fff" font-size="12" font-family="Oswald-Regular, Oswald" letter-spacing="0.005em"><tspan x="0" y="0">Harga</tspan></text>
+    <g id="Rectangle_8" data-name="Rectangle 8" transform="translate(146 573)" fill="#d9cfcf" stroke="#fff" stroke-width="1">
+      <rect width="238" height="38" stroke="none"/>
+      <rect x="0.5" y="0.5" width="237" height="37" fill="none"/>
+    </g>
+    <g id="Rectangle_9" data-name="Rectangle 9" transform="translate(383 573)" fill="#d9cfcf" stroke="#fff" stroke-width="1">
+      <rect width="124" height="38" stroke="none"/>
+      <rect x="0.5" y="0.5" width="123" height="37" fill="none"/>
+    </g>
+    <text id="Wisatawan_Lokal" data-name="Wisatawan Lokal" transform="translate(187 561)" font-size="14" font-family="Oswald-Regular, Oswald" letter-spacing="0.005em"><tspan x="0" y="0">Wisatawan Lokal</tspan></text>
+    <text id="Wisatawan_Mancanegara" data-name="Wisatawan Mancanegara" transform="translate(187 598)" font-size="14" font-family="Oswald-Regular, Oswald" letter-spacing="0.005em"><tspan x="0" y="0">Wisatawan Mancanegara</tspan></text>
+    <text id="Rp._45.000_00" data-name="Rp. 45.000, 00" transform="translate(410 561)" font-size="14" font-family="Oswald-Regular, Oswald" letter-spacing="0.005em"><tspan x="0" y="0">Rp. 45.000, 00</tspan></text>
+    <text id="Rp._90.000_00" data-name="Rp. 90.000, 00" transform="translate(410 598)" font-size="14" font-family="Oswald-Regular, Oswald" letter-spacing="0.005em"><tspan x="0" y="0">Rp. 90.000, 00</tspan></text>
+  </g>
+</svg>
