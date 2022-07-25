@@ -7,6 +7,7 @@ use App\Mail\Guide\GuideNotify;
 use App\Models\CetakPDF;
 use App\Models\City;
 use App\Models\Kebangsaan;
+use App\Models\Kuota;
 use App\Models\Notifikasi;
 use App\Models\Perjalanan;
 use App\Models\Pesanan;
@@ -45,15 +46,23 @@ class PemesananController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $kebangsaan = Kebangsaan::get();
         $provinsi = Province::get();
         $kota = City::get();
         $wisatawan = Wisatawan::latest()->get();
-        $perjalanan = Perjalanan::with('user')->get();
+
         $tiket = Tiket::orderBy('nama', 'asc')->get();
-        return view('frontend.pendaftaran', compact('tiket', 'perjalanan', 'wisatawan', 'kebangsaan', 'provinsi', 'kota'));
+        $tanggal_id = $request->input('tanggal_id');
+
+        $date_pemesanan = date('Y-m-d', strtotime($tanggal_id));
+        $query = "tanggal_mulai < '$date_pemesanan' and DATEDIFF(tanggal_selesai, '$date_pemesanan') > 4 ";
+        $perjalanan = Perjalanan::whereRaw(
+            $query
+        )->where('status', 'aktif')->get();
+        $id = $request->input('id');
+        return view('frontend.pendaftaran', compact('tiket', 'perjalanan', 'wisatawan', 'kebangsaan', 'provinsi', 'kota', 'tanggal_id', 'id'));
     }
 
     /**
@@ -67,7 +76,7 @@ class PemesananController extends Controller
         $this->validate($request, [
             'perjalanan_id' => 'required',
             'kebangsaan_id' => 'required',
-            'tanggal_naik' => 'required',
+            'tanggal_id' => 'required',
             'tanggal_turun' => 'required',
             'jenis_identitas' => 'required',
             'nama' => 'required',
@@ -78,10 +87,9 @@ class PemesananController extends Controller
             'no_hp' => 'required|max:12',
             'pekerjaan' => 'required',
             'foto_identitas' => 'required|mimes:jpg,jpeg,png|max:300',
-        ], [
             'perjalanan_id.required' => 'Wajib memilih Pemandu',
             'kebangsaan_id.required' => 'Field Wajib Diisi.',
-            'tanggal_naik.required' => 'Field Wajib Diisi.',
+            'tanggal_id.required' => 'Field Wajib Diisi.',
             'tanggal_turun.required' => 'Field Wajib Diisi.',
             'jenis_identitas.required' => 'Field Wajib Diisi.',
             'nama.required' => 'Field Wajib Diisi.',
@@ -96,25 +104,10 @@ class PemesananController extends Controller
             'foto_identitas.mimes' => 'Format harus JPG/JPEG/PNG.',
             'foto_identitas.max' => 'Maksimal 300kb',
         ]);
-
-        //upload Imaged
-        // $file = $request->file('foto_identitas')->getClientOriginalName();
-        // $destination = base_path() . '/public/foto_wisatawan';
-        // $request->file('foto_identitas')->move($destination, $file);
-        // $wisatawan['foto_identitas'] = $file;
-        // dd($request->all());
-        $rating = new Rating();
-        $rating->perjalanan_id = $request->perjalanan_id;
-        $rating->user_id = Auth::user()->id;
-        $rating->rating = 5;
-        $rating->review = null;
-        $rating->save();
-
         $wisatawan = Wisatawan::create([
             'perjalanan_id' => $request->perjalanan_id,
-            'rating_id' => $rating->id,
             'user_id' => Auth::user()->id,
-            'tanggal_naik' => $request->tanggal_naik,
+            'tanggal_id' => $request->tanggal_id,
             'tanggal_turun' => $request->tanggal_turun,
             'jenis_identitas' => $request->jenis_identitas[0],
             'nomor_identitas' => $request->nomor_identitas[0],
@@ -168,6 +161,15 @@ class PemesananController extends Controller
         $pesanan->upload_bukti = null;
         $pesanan->save();
 
+        $rating = new Rating();
+        $rating->perjalanan_id = $request->perjalanan_id;
+        $rating->pesanan_id = $pesanan->id;
+        $rating->wisatawan_id = $wisatawan->id;
+        $rating->user_id = Auth::user()->id;
+        $rating->rating = 5;
+        $rating->review = null;
+        $rating->save();
+
         $notifikasi = new Notifikasi();
         $notifikasi->perjalanan_id = $request->perjalanan_id;
         $notifikasi->user_id = Auth::user()->id;
@@ -212,14 +214,14 @@ class PemesananController extends Controller
      */
     public function edit($id)
     {
-        $pdf = CetakPDF::find($id);
-        $wisatawan = Wisatawan::find($id);
-        $anggota = WisatawanAnggota::get();
-        $kebangsaan = Kebangsaan::find($id);
-        $pesanan = Pesanan::find($id);
-        $user = User::select('id', 'name', 'email', 'no_hp', 'foto')->where('level', 'guide')->first();
-        $perjalanan = Perjalanan::with('user')->get();
-        return view('frontend.checkout', compact('wisatawan', 'user', 'pesanan', 'kebangsaan', 'perjalanan', 'anggota', 'pdf'));
+        // $pdf = CetakPDF::find($id);
+        // $wisatawan = Wisatawan::find($id);
+        // $anggota = WisatawanAnggota::get();
+        // $kebangsaan = Kebangsaan::find($id);
+        // $pesanan = Pesanan::find($id);
+        // $user = User::select('id', 'name', 'email', 'no_hp', 'foto')->where('level', 'guide')->first();
+        // $perjalanan = Perjalanan::with('user')->get();
+        // return view('frontend.checkout', compact('wisatawan', 'user', 'pesanan', 'kebangsaan', 'perjalanan', 'anggota', 'pdf'));
     }
 
     /**

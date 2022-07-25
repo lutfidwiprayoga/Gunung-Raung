@@ -17,6 +17,8 @@ class CreateRatingsTable extends Migration
             $table->id();
             $table->unsignedInteger('perjalanan_id');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('pesanan_id');
+            $table->unsignedInteger('wisatawan_id');
             $table->integer('rating');
             $table->string('review');
             $table->timestamps();

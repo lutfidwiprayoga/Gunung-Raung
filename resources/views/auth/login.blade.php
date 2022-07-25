@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-4 col-sm-offset-4">
-                                                <button type="submit" class="btn btn-success">Login</button>
+                                                <button type="submit" class="btn btn-success btn-round">Login</button>
                                             </div>
                                         </div>
                                     </form>

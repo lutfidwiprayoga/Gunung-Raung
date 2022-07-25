@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="text-center btn-checklist">
-                                <a href="{{ route('booking.create') }}">
+                                <a href="{{ route('infokuota.index') }}">
                                     <input class="btn btn-success btn-round" type="submit" id="pendaftaran" value="Daftar"
                                         disabled="">
                                 </a>

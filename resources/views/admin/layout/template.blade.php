@@ -9,7 +9,6 @@
 
     <!-- Fonts and icons -->
     <script src="{{ asset('template_atlantis') }}/assets/js/plugin/webfont/webfont.min.js"></script>
-    <script src="{{ asset('template_atlantis') }}/assets/js/plugin/datatables/datatables.min.js"></script>
     <script>
         WebFont.load({
             google: {
@@ -45,6 +44,7 @@
     <!-- CSS Just for demo purpos{{ asset('template_atlantis') }}/'t include it in your project -->
     <link rel="stylesheet" href="{{ asset('template_atlantis') }}/assets/css/demo.css">
     <link rel="stylesheet" href="{{ asset('template_atlantis') }}/assets/air-datepicker/dist/css/datepicker.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
 </head>
 
 <body>
@@ -86,6 +86,7 @@
                             </div>
                         </form>
                     </div>
+                    <!--Navbar-->
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                         <li class="nav-item toggle-nav-search hidden-caret">
                             <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button"
@@ -200,7 +201,7 @@
                     </ul>
                 </div>
             </nav>
-            <!-- End Navbar -->
+            <!-- End Navbar Header-->
 
         </div>
         <!-- Sidebar Account -->
@@ -274,7 +275,6 @@
 
     </div>
     <!--   Core JS Files   -->
-
     <script src="{{ asset('template_atlantis') }}/assets/js/core/jquery.3.2.1.min.js"></script>
     <script src="{{ asset('template_atlantis') }}/assets/js/core/popper.min.js"></script>
     <script src="{{ asset('template_atlantis') }}/assets/js/core/bootstrap.min.js"></script>
@@ -293,6 +293,7 @@
     <!--DataTables-->
     {{-- <script src="{{ asset('template_atlantis') }}/assets/datatables/datatables.min.js"></script> --}}
     <script src="{{ asset('template_atlantis') }}/assets/air-datepicker/dist/js/datepicker.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 </body>
 
 </html>

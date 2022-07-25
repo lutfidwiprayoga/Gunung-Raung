@@ -20,10 +20,11 @@
                         <div class="text-right col-xs-5 menu-1">
                             <ul>
                                 <li>
-                                    <form action="" class="search nav-form">
+                                    <form action="{{ route('caripesanan.get') }}" class="search nav-form">
+                                        @csrf
                                         <div class="input-group input-search">
-                                            <input type="text" class="form-control-search" name="q" id="q"
-                                                placeholder="Cek kode Booking">
+                                            <input type="text" class="form-control-search" name="cari" id="cari"
+                                                placeholder="Cek status Booking">
                                         </div>
                                     </form>
                                 </li>

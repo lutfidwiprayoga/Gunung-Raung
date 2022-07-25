@@ -25,4 +25,18 @@ class UserController extends Controller
         $wisatawan = User::where('level', 'wisatawan')->get();
         return view('admin.user', compact('wisatawan'));
     }
+
+    public function delete($id)
+    {
+        $user = User::find($id);
+        if ($user->foto <> "") {
+            unlink(public_path('foto_profil') . '/' . $user->foto);
+        }
+        $user->delete();
+        if ($user) {
+            return redirect()->route('admin.user')->with(['success' => 'Data Berhasil Dihapus!']);
+        } else {
+            return redirect()->route('admin.user')->with(['error' => 'Data Berhasil Dihapus!']);
+        }
+    }
 }

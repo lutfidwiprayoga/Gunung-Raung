@@ -24,6 +24,12 @@ class RiwayatPerjalananController extends Controller
             ->where('pesanans.status_guide', '=', 'Sukses')
             ->where('read', '=', true)
             ->get();
-        return view('guide.riwayatperjalanan', compact('notif'));
+        $notif1 = Notifikasi::join('pesanans', 'notifikasis.pesanan_id', '=', 'pesanans.id')
+            ->whereIn('perjalanan_id', Auth::user()->perjalanans->pluck('id')->toArray())
+            ->where('pesanans.status_pemesanan', '=', 'Disetujui')
+            ->where('pesanans.status_guide', '=', 'Sukses')
+            ->where('read', '=', true)
+            ->get();
+        return view('guide.riwayatperjalanan', compact('notif', 'notif1'));
     }
 }

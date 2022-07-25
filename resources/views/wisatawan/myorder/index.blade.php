@@ -31,7 +31,7 @@
                             <!--Pesanan Proses-->
                             <div class="tab-pane fade" id="home1" role="tabpanel">
                                 <div class="pd-20">
-                                    @forelse ($notif1 as $ps1)
+                                    @foreach ($notif1 as $ps1)
                                         <div class="card-light">
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -66,7 +66,7 @@
                                                                                     {{ $ps1->pesanan->status_pemesanan }}
                                                                                 </font>
                                                                             </td>
-                                                                            <td>{{ date('l, d-m-Y', strtotime($ps1->pesanan->tanggal_pesan)) }}
+                                                                            <td>{{ date('l, d F Y', strtotime($ps1->pesanan->tanggal_pesan)) }}
                                                                                 Pukul
                                                                                 {{ date('H:i', strtotime($ps1->pesanan->tanggal_pesan)) }}
                                                                                 WIB
@@ -83,8 +83,9 @@
                                                                             </td>
                                                                             <td>
                                                                                 <div class="form-button-action">
-                                                                                    <a href="#"><button
-                                                                                            class="btn btn-success btn-round btn-sm"><i
+                                                                                    <a
+                                                                                        href="{{ route('myorder.show.proses', $ps1->id) }}"><button
+                                                                                            class="btn btn-link btn-primary btn-lg"><i
                                                                                                 class="fa fa-info"></i></button>
                                                                                     </a>
                                                                                 </div>
@@ -121,13 +122,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @empty
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <p>Pesanan anda masih dalam proses</p>
-                                            </div>
-                                        </div>
-                                    @endforelse
+                                    @endforeach
                                 </div>
                             </div>
                             <!--Sedang Mendaki-->
@@ -167,7 +162,7 @@
                                                                                     {{ $ps2->pesanan->status_pemesanan }}
                                                                                 </font>
                                                                             </td>
-                                                                            <td>{{ date('l, d-m-Y', strtotime($ps2->pesanan->tanggal_pesan)) }}
+                                                                            <td>{{ date('l, d F Y', strtotime($ps2->pesanan->tanggal_pesan)) }}
                                                                                 Pukul
                                                                                 {{ date('H:i', strtotime($ps2->pesanan->tanggal_pesan)) }}
                                                                                 WIB
@@ -179,9 +174,10 @@
                                                                             </td>
                                                                             <td>
                                                                                 <div class="form-button-action">
-                                                                                    <a href="#"><button
-                                                                                            class="btn btn-success btn-round btn-sm"><i
-                                                                                                class="fa fa-info"></i></button>
+                                                                                    <a
+                                                                                        href="{{ route('myorder.show.mendaki', $ps2->id) }}"><button
+                                                                                            class="btn btn-link btn-warning btn-lg"><i
+                                                                                                class="fa fa-edit"></i></button>
                                                                                     </a>
                                                                                 </div>
                                                                             </td>
@@ -196,11 +192,11 @@
                                                                     </font>
                                                                 </p>
                                                             </div>
-                                                            <div class="col-md-2">
+                                                            {{-- <div class="col-md-2">
                                                                 <a href="{{ route('myorder.edit', $ps2->id) }}"
                                                                     class="btn btn-success btn-round btn-sm">Akhiri
                                                                     Pendakian</a>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -258,8 +254,9 @@
                                                                             </td>
                                                                             <td>
                                                                                 <div class="form-button-action">
-                                                                                    <a href="#"><button
-                                                                                            class="btn btn-success btn-round btn-sm"><i
+                                                                                    <a
+                                                                                        href="{{ route('myorder.show.selesai', $ps->id) }}"><button
+                                                                                            class="btn btn-link btn-primary btn-lg"><i
                                                                                                 class="fa fa-info"></i></button>
                                                                                     </a>
                                                                                 </div>
@@ -286,104 +283,103 @@
                                                                 @endif
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    @endforeach
                                 </div>
-                                @endforeach
                             </div>
-                        </div>
-                        <!-- Pesanan gagal -->
-                        <div class="tab-pane fade" id="home4" role="tabpanel3">
-                            <div class="pd-20">
-                                @foreach ($notif4 as $ps4)
-                                    <div class="card-light">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <div id="add-row_wrapper"
-                                                    class="dataTables_wrapper container-fluid dt-bootstrap4">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <table class="table table-responsive">
-                                                                <thead>
-                                                                    <tr role="row">
-                                                                        <th>No</th>
-                                                                        <th>Kode Pemesanan</th>
-                                                                        <th>Status Pemesanan</th>
-                                                                        <th>Tanggal Pesan</th>
-                                                                        <th>Total Bayar</th>
-                                                                        <th>Maksimal Pembayaran</th>
-                                                                        <th>Nama Ketua</th>
-                                                                        <th>Aksi</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <?php $no = 1; ?>
-                                                                    <tr role="row" class="odd">
-                                                                        <td>{{ $no++ }}</td>
-                                                                        <td>
-                                                                            <font color='#15a585'>
-                                                                                {{ $ps4->pesanan->kode_pesanan }}
-                                                                            </font>
-                                                                        </td>
-                                                                        <td>
-                                                                            <font color="red">
-                                                                                {{ $ps4->pesanan->status_pemesanan }}
-                                                                            </font>
-                                                                        </td>
-                                                                        <td>{{ date('l, d-m-Y', strtotime($ps4->pesanan->tanggal_pesan)) }}
-                                                                            Pukul
-                                                                            {{ date('H:i', strtotime($ps4->pesanan->tanggal_pesan)) }}
-                                                                            WIB
-                                                                        </td>
-                                                                        <td>Rp.
-                                                                            {{ number_format($ps4->pesanan->total_harga) }}
-                                                                        </td>
-                                                                        <td>{{ date('l, d-m-Y', strtotime($ps4->pesanan->maksimal_pembayaran)) }}
-                                                                            Pukul
-                                                                            {{ date('H:i', strtotime($ps4->pesanan->maksimal_pembayaran)) }}
-                                                                            WIB
-                                                                        </td>
-                                                                        <td>{{ $ps4->pesanan->wisatawan->nama }}
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="form-button-action">
-                                                                                <a href="#"><button
-                                                                                        class="btn btn-success btn-round btn-sm"><i
-                                                                                            class="fa fa-info"></i></button>
-                                                                                </a>
-                                                                            </div>
-                                                                        </td>
-                                                                </tbody>
-                                                            </table>
+                            <!-- Pesanan gagal -->
+                            <div class="tab-pane fade" id="home4" role="tabpanel3">
+                                <div class="pd-20">
+                                    @foreach ($notif4 as $ps4)
+                                        <div class="card-light">
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <div id="add-row_wrapper"
+                                                        class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <table class="table table-responsive">
+                                                                    <thead>
+                                                                        <tr role="row">
+                                                                            <th>No</th>
+                                                                            <th>Kode Pemesanan</th>
+                                                                            <th>Status Pemesanan</th>
+                                                                            <th>Tanggal Pesan</th>
+                                                                            <th>Total Bayar</th>
+                                                                            <th>Maksimal Pembayaran</th>
+                                                                            <th>Nama Ketua</th>
+                                                                            <th>Aksi</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <?php $no = 1; ?>
+                                                                        <tr role="row" class="odd">
+                                                                            <td>{{ $no++ }}</td>
+                                                                            <td>
+                                                                                <font color='#15a585'>
+                                                                                    {{ $ps4->pesanan->kode_pesanan }}
+                                                                                </font>
+                                                                            </td>
+                                                                            <td>
+                                                                                <font color="red">
+                                                                                    {{ $ps4->pesanan->status_pemesanan }}
+                                                                                </font>
+                                                                            </td>
+                                                                            <td>{{ date('l, d F Y', strtotime($ps4->pesanan->tanggal_pesan)) }}
+                                                                                Pukul
+                                                                                {{ date('H:i', strtotime($ps4->pesanan->tanggal_pesan)) }}
+                                                                                WIB
+                                                                            </td>
+                                                                            <td>Rp.
+                                                                                {{ number_format($ps4->pesanan->total_harga) }}
+                                                                            </td>
+                                                                            <td>{{ date('l, d-m-Y', strtotime($ps4->pesanan->maksimal_pembayaran)) }}
+                                                                                Pukul
+                                                                                {{ date('H:i', strtotime($ps4->pesanan->maksimal_pembayaran)) }}
+                                                                                WIB
+                                                                            </td>
+                                                                            <td>{{ $ps4->pesanan->wisatawan->nama }}
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="form-button-action">
+                                                                                    <a
+                                                                                        href="{{ route('myorder.show.batal', $ps4->id) }}"><button
+                                                                                            class="btn btn-link btn-primary btn-lg"><i
+                                                                                                class="fa fa-info"></i></button>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </td>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-10">
-                                                            <p>
-                                                                <font color='grey'>Dibatalkan oleh anda</font>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <a href="/checklist"
-                                                                class="btn btn-success btn-round btn-sm">Booking
-                                                                Lagi</a>
+                                                        <div class="row">
+                                                            <div class="col-md-10">
+                                                                <p>
+                                                                    <font color='grey'>Dibatalkan oleh anda</font>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <a href="/checklist"
+                                                                    class="btn btn-success btn-round btn-sm">Booking
+                                                                    Lagi</a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!-- Modal Rating -->
     @foreach ($notif3 as $ps)

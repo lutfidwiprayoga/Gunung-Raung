@@ -27,8 +27,9 @@
                             <div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table id="add-row" class="table display table-striped table-hover dataTable"
-                                            role="grid" aria-describedby="add-row_info">
+                                        <table id="perjalanan-masuk"
+                                            class="table display table-striped table-hover dataTable" role="grid"
+                                            aria-describedby="add-row_info">
                                             <thead>
                                                 <tr role="row">
                                                     <th>No</th>
@@ -46,7 +47,7 @@
                                                 <tr role="row" class="odd">
                                                     <td>{{ $no++ }}</td>
                                                     <td>
-                                                        {{ date('l, d F Y', strtotime($pesanan->wisatawan->tanggal_naik)) }}
+                                                        {{ date('l, d F Y', strtotime($pesanan->wisatawan->kuota->tanggal_pendakian)) }}
                                                     </td>
                                                     <td>
                                                         {{ date('l, d F Y', strtotime($pesanan->wisatawan->tanggal_turun)) }}
@@ -63,9 +64,9 @@
                                                                     id="alert_demo_3_3"><i
                                                                         class="fas fa-check"></i></button>
                                                             </a>
-                                                            <button class="btn btn-icon btn-round btn-danger btn-sm"
+                                                            {{-- <button class="btn btn-icon btn-round btn-danger btn-sm"
                                                                 id="alert_demo_8"><i class="fas fa-times"></i>
-                                                            </button>
+                                                            </button> --}}
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -80,6 +81,12 @@
             </div>
         </div>
     </div>
+    <!--Datatable-->
+    <script>
+        $(document).ready(function() {
+            $('#perjalanan-masuk').DataTable();
+        });
+    </script>
     <!--Sweet Alert-->
     <script>
         //== Class definition

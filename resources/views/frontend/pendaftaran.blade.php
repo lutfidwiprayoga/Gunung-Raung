@@ -30,6 +30,11 @@
                                                         data-harga="{{ $data->harga_perjalanan }}"
                                                         class="guide form-check-input" type="radio" name="perjalanan_id"
                                                         id="inlineRadio" value="{{ $data->id }}">
+                                                    <div class="text-danger">
+                                                        @error('perjalanan_id')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </div>
                                                     <div class="contact-dire-info text-center">
                                                         <div class="contact-avatar">
                                                             <span>
@@ -43,14 +48,12 @@
                                                             <div class="work-text-success">
                                                                 <p>Rp.{{ number_format($data->harga_perjalanan) }}/orang
                                                                 </p>
+                                                                <p>{{ date('D, d M Y', strtotime($data->tanggal_mulai)) }}-{{ date('D, d M Y', strtotime($data->tanggal_selesai)) }}
+                                                                </p>
                                                             </div>
-                                                            {{-- <p>{{ date('l, d-m-Y', strtotime($data->jadwal_mulai)) }}
-                                                                -
-                                                                {{ date('l, d-m-Y', strtotime($data->jadwal_selesai)) }}
-                                                            </p> --}}
                                                         </div>
                                                         <div class="profile-sort-desc">
-                                                            {{ $data->keterangan }}</p>
+                                                            {{ $data->keterangan }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -124,9 +127,15 @@
                                                 </font>
                                             </label>
                                             <div class="col-sm-4">
-                                                <input name="tanggal_naik" type="date" id="date-input"
+                                                <input type="date" id="tanggal-naik"
                                                     class="form-control form-control-alternative"
-                                                    data-date-format="dd/mm/yyyy">
+                                                    data-date-format="dd/mm/yyyy" value="{{ $tanggal_id }}" readonly>
+                                                <input type="hidden" name="tanggal_id" value="{{ $id }}">
+                                                {{-- <div class="text-danger">
+                                                    @error('tanggal_id')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div> --}}
                                                 <p style="font-size: 12px">
                                                     <font color="red">*Maxsimal Pendakian 5 hari</font>
                                                 </p>
@@ -137,9 +146,14 @@
                                                 </font>
                                             </label>
                                             <div class="col-sm-4">
-                                                <input name="tanggal_turun" type="date" id="date-input"
+                                                <input name="tanggal_turun" type="date" id="tanggal-turun"
                                                     class="form-control form-control-alternative"
-                                                    data-date-format="dd/mm/yyyy">
+                                                    data-date-format="dd/mm/yyyy" value="{{ $tanggal_id }}">
+                                                <div class="text-danger">
+                                                    @error('tanggal_turun')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -157,9 +171,10 @@
                                             </label>
                                             <div class="col-sm-10">
                                                 <input name="nama[]" type="text" id="input-first-name"
-                                                    class="form-control form-control-alternative">
+                                                    class="form-control form-control-alternative"
+                                                    value="{{ old('nama[]') }}">
                                                 <div class="text-danger">
-                                                    @error('nama_lengkap')
+                                                    @error('nama')
                                                         {{ $message }}
                                                     @enderror
                                                 </div>
@@ -170,7 +185,8 @@
                                             <div class="col-sm-10">
                                                 <input name="email" type="email"
                                                     class="form-control form-control-alternative"
-                                                    placeholder="Pastikan Alamat email anda valid karena konfirmasi pendaftaran akan dikirim ke alamat email ketua kelompok">
+                                                    placeholder="Pastikan Alamat email anda valid karena konfirmasi pendaftaran akan dikirim ke alamat email ketua kelompok"
+                                                    value="{{ old('email') }}">
                                                 <div class="text-danger">
                                                     @error('email')
                                                         {{ $message }}
@@ -185,7 +201,7 @@
                                             <div class="col-sm-4">
                                                 <input name="tanggal_lahir[]" type="date" id="date-input"
                                                     class="form-control form-control-alternative"
-                                                    data-date-format="dd/mm/yyyy">
+                                                    data-date-format="dd/mm/yyyy" value="{{ old('tanggal_lahir[]') }}">
                                                 <div class="text-danger">
                                                     @error('tanggal_lahir')
                                                         {{ $message }}
@@ -197,8 +213,8 @@
                                             <label class="control-label col-sm-2">Jenis Kelamin<font color="red">*</font>
                                             </label>
                                             <div class=" col-sm-4">
-                                                <select name="jenis_kelamin[]"
-                                                    class="form-control form-control-alternative">
+                                                <select name="jenis_kelamin[]" class="form-control form-control-alternative"
+                                                    value="{{ old('jenis_kelamin[]') }}">
                                                     <option value="">Pilih Jenis Kelamin</option>
                                                     <option value="Laki-laki">Laki-laki</option>
                                                     <option value="Perempuan">Perempuan</option>
@@ -215,7 +231,7 @@
                                                 KTP)<font color="red">*</font></label>
                                             <div class="col-sm-10">
                                                 <input class="form-control form-control-alternative" name="alamat[]"
-                                                    data-title="Alamat">
+                                                    data-title="Alamat" value="{{ old('alamat[]') }}">
                                                 <div class="text-danger">
                                                     @error('alamat')
                                                         {{ $message }}
@@ -228,7 +244,7 @@
                                                 Identitas<font color="red">*</font></label>
                                             <div class="col-sm-4">
                                                 <select name="jenis_identitas[]" class="form-control"
-                                                    id="exampleFormControlSelect">
+                                                    id="exampleFormControlSelect" value="{{ old('jenis_identitas[]') }}">
                                                     <option value="">-</option>
                                                     <option value="KTP">KTP</option>
                                                     <option value="Kartu Pelajar/KTM">Kartu Pelajar/KTM</option>
@@ -247,7 +263,8 @@
                                                 Kartu Identitas<font color="red">*</font></label>
                                             <div class="col-sm-4">
                                                 <input name="nomor_identitas[]" type="text" id="input-last-name"
-                                                    class="form-control form-control-alternative">
+                                                    class="form-control form-control-alternative"
+                                                    value="{{ old('nomor_identitas[]') }}">
                                                 <div class="text-danger">
                                                     @error('nomor_identitas')
                                                         {{ $message }}
@@ -260,7 +277,7 @@
                                                     color="red">*</font></label>
                                             <div class="col-sm-4">
                                                 <select name="pekerjaan" class="form-control"
-                                                    id="exampleFormControlSelect">
+                                                    id="exampleFormControlSelect" value="{{ old('pekerjaan') }}">
                                                     <option value="">Pilih Pekerjaan</option>
                                                     <option value="PNS">PNS</option>
                                                     <option value="Pegawai Swasta">Pegawai Swasta</option>
@@ -294,14 +311,15 @@
                                                 </font></label>
                                             <div class="col-sm-4">
                                                 <select name="kebangsaan_id[]" v-model="kebangsaan_ketua"
-                                                    class="form-control" id="negara_id">
+                                                    class="form-control" id="negara_id"
+                                                    value="{{ old('kebangsaan_id[]') }}">
                                                     <option>-</option>
                                                     @foreach ($kebangsaan as $kb)
                                                         <option value="{{ $kb->id }}">{{ $kb->negara }}</option>
                                                     @endforeach
                                                 </select>
                                                 <div class="text-danger">
-                                                    @error('kebangsaan')
+                                                    @error('kebangsaan_id')
                                                         {{ $message }}
                                                     @enderror
                                                 </div>
@@ -312,7 +330,8 @@
                                                     color="red">*</font></label>
                                             <div class="col-sm-4">
                                                 <input name="no_hp[]" type="number" id="input-first-name"
-                                                    class="form-control form-control-alternative">
+                                                    class="form-control form-control-alternative"
+                                                    value="{{ old('no_hp[]') }}">
                                                 <div class="text-danger">
                                                     @error('no_hp')
                                                         {{ $message }}
@@ -326,7 +345,8 @@
                                                     *
                                                 </font></label>
                                             <div class="col-sm-4">
-                                                <select name="provinsi" class="form-control" id="provinsi_id">
+                                                <select name="provinsi" class="form-control" id="provinsi_id"
+                                                    value="{{ old('provinsi') }}">
                                                     <option>-</option>
                                                     @foreach ($provinsi as $prov)
                                                         <option value="{{ $prov->province_id }}">{{ $prov->name }}
@@ -344,7 +364,8 @@
                                             <label class="form-control-label col-sm-2" for="kota_id">Kabupaten /
                                                 Kota<font color="red">*</font></label>
                                             <div class="col-sm-4">
-                                                <select name="asal_kota" class="form-control" id="kota_id">
+                                                <select name="asal_kota" class="form-control" id="kota_id"
+                                                    value="{{ old('asal_kota') }}">
                                                     <option>-</option>
                                                 </select>
                                                 <div class="text-danger">
@@ -362,6 +383,7 @@
                                                 <select name="" class="form-control" v-on:change="changeAnggotaLength"
                                                     id="">
                                                     <option value="" selected>-</option>
+                                                    <option value="1">1</option>
                                                     <option value="3">3</option>
                                                     <option value="4">4</option>
                                                 </select>
@@ -506,6 +528,23 @@
             });
         });
     </script>
+    <!-- Maksimal Tanggal Turun-->
+    <script>
+        $(document).ready(function() {
+            $("#tanggal-turun").change(function(e) {
+                const naikDate = moment($("#tanggal-naik").val());
+                const turunDate = moment(e.target.value);
+                console.log(`${turunDate.diff(naikDate, 'days')}`)
+                if (turunDate.diff(naikDate, 'days') > 5) {
+                    alert("Maksimal pendakian 5 hari");
+                    $("#tanggal-turun").val($("#tanggal-naik").val());
+                } else if (turunDate.diff(naikDate, 'days') <= 0) {
+                    alert("Tanggal turun tidak boleh dibawah tanggal naik");
+                    $("#tanggal-turun").val($("#tanggal-naik").val());
+                }
+            });
+        });
+    </script>
     <!-- Tanggal Hari ini -->
     <script>
         var tw = new Date();
@@ -532,18 +571,18 @@
                             <td>
                                 <input style="background-color:#ffffff"
                                     id="nm_rombongan_1" class="input-text-md"
-                                    type="text" name="nama[]"  data-title="nama">
+                                    type="text" name="nama[]"  data-title="nama" value="{{ old('nama[]') }}">
                             </td>
                             <td>
                                 <input style="background-color:#f7f7f7"
                                     id="nm_rombongan_1" class="input-text-md"
                                     type="date" name="tanggal_lahir[]"
-                                    data-date-format="dd/mm/yyyy">
+                                    data-date-format="dd/mm/yyyy" value="{{ old('tanggal_lahir[]') }}">
                             </td>
                             <td>
                                 <select style="background-color:#f7f7f7"
                                     name="jenis_kelamin[]"
-                                    class="input-text-md" id="nm_rombongan_1">
+                                    class="input-text-md" id="nm_rombongan_1" value="{{ old('jenis_kelamin[]') }}">
                                     <option value="">Pilih Jenis Kelamin
                                     </option>
                                     <option value="Laki-laki">Laki-laki
@@ -556,12 +595,12 @@
                                 <input style="background-color:#f7f7f7"
                                     id="nm_rombongan_1" class="input-text-md"
                                     type="text" name="alamat[]"
-                                    data-title="alamat">
+                                    data-title="alamat" value="{{ old('alamat[]') }}">
                             </td>
                             <td>
                                 <select style="background-color:#f7f7f7"
                                     name="jenis_identitas[]"
-                                    class="input-text-md" id="nm_rombongan_1">
+                                    class="input-text-md" id="nm_rombongan_1" value="{{ old('jenis_identitas[]') }}">
                                     <option value="">-</option>
                                     <option value="KTP">KTP</option>
                                     <option value="Kartu Pelajar">Kartu
@@ -576,19 +615,19 @@
                                 <input style="background-color:#f7f7f7"
                                     id="nm_rombongan_1" class="input-text-md"
                                     type="number" name="nomor_identitas[]"
-                                    data-title="nomor_identitas">
+                                    data-title="nomor_identitas" value="{{ old('nomor_identitas[]') }}">
                             </td>
                             <td>
                                 <input style="background-color:#f7f7f7"
                                     id="nm_rombongan_1" class="input-text-md"
                                     type="number" name="no_hp[]"
-                                    data-title="no_hp">
+                                    data-title="no_hp" value="{{ old('no_hp[]') }}">
                             </td>
                             <td>
                                 <select name="kebangsaan_id[]"
                                     class="input-text-md"
                                     id="exampleFormControlSelect"
-                                    v-model="anggota[index]">
+                                    v-model="anggota[index]" value="{{ old('kebangsaan_id[]') }}">
                                     <option value="">-</option>
                                     @foreach ($kebangsaan as $kb)
                                         <option value="{{ $kb->id }}">{{ $kb->negara }}</option>
@@ -713,5 +752,19 @@
         app.component('table-component', tableComponent);
         app.component('anggota-input-component', anggotaInputComponent)
         app.mount("#app")
+    </script>
+    <script>
+        $(function() {
+            $('input:radio[name="perjalanan_id"]').change(function() {
+                if ($(this).val() == '1') {
+
+                } else {
+                    $("input[name=perjalanan_id]").prop("disabled", true);
+                    alert(
+                        "Paket Guide Jadwal pendakian yang anda pilih sudah terbooking silahkan pilih jadwal lain hari"
+                    );
+                }
+            });
+        });
     </script>
 @endsection

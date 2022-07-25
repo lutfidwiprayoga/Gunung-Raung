@@ -284,53 +284,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-content" id="ibox-content" style="background-color: #ffffff;font-size: 14px">
-                                <div class="col-sm-12" style="padding: 20px 15px">
-                                    <table class="tabel">
-                                        <tbody>
-                                            <tr>
-                                                <td style="vertical-align: top"><input id="question1" name="question1"
-                                                        type="checkbox" value="1"> </td>
-                                                <td><label> Saya telah membaca, menyetujui, dan mengikuti semua peraturan
-                                                        dan SOP diatas </label></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="vertical-align: top"><input id="question2" name="question2"
-                                                        type="checkbox" value="2"></td>
-                                                <td><label> Wajib untuk dibawa : </label></td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td>
-                                                    <ol>
-                                                        <li> Lembar e-Simaksi (berkas registrasi yang telah disetujui)</li>
-                                                        <li> Membawa KTP/KTM/SIM/Paspor yang masih berlaku </li>
-                                                        <li> Pendaki usia dibawah 11 tahun harus menyerahkan surat izin
-                                                            dari orangtua/wali <span style="color: red">*</li>
-                                                        <li> Membawa trash bag / kantong sampah </li>
-                                                        <li> Surat keterangan sehat <span style="color: red">*</span></li>
-                                                        <li> <span style="color: red">Menunjukkan sertifikat vaksin di
-                                                                aplikasi Peduli Lindungi.</span></li>
-                                                    </ol>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <a href="kapasitas.php?">
-                                    <input class="btn btn-primary tengah block_button" type="button" disabled=""
-                                        value="Daftar"
-                                        style="margin-bottom: 20px; cursor: not-allowed; background-color: white; border: none;">
-                                    <input class="btn btn-success btn-round text-center" type="button" value="Daftar"
-                                        style="margin-bottom: 20px; display: none">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        $("input[type=checkbox]").on("change", function(evt) {
+            var check = $('input[id=checklist]:checked');
+            if (check.length < 1) {
+                $("input[id=sop]").prop("disabled", true);
+            } else {
+                $("input[id=sop]").prop("disabled", false);
+            }
+        });
+    </script>
 @endsection

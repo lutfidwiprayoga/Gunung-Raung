@@ -39,7 +39,7 @@
                     <p>Booking online dilakukan selama 24 jam, cermati tata cara dan aturan sesuai dengan
                         prosedur yang sudah ditetapkan. Disarankan untuk booking dan pembayaran dilakukan jauh hari
                         sebelum tanggal pendakian.</p>
-                    <p><a href="/checklist" class="btn btn-success btn-round">Booking Sekarang</a></p>
+                    <p><a href="/index/sop" class="btn btn-success btn-round">Booking Sekarang</a></p>
                 </div>
             </div>
         </div>

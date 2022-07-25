@@ -43,44 +43,8 @@
                         <div class="table-responsive">
                             <div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="dataTables_length" id="add-row_length"><label>Show <select
-                                                    name="add-row_length" aria-controls="add-row"
-                                                    class="form-control form-control-sm">
-                                                    <option value="10">10</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
-                                                </select> entries</label></div>
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="dataTables_filter">
-                                            <form action="" method="GET" class="col-sm-3">
-                                                <select name="" aria-controls="add-row"
-                                                    class="form-control form-control-sm">
-                                                    <option value="">Jenis Wisatawan</option>
-                                                    <option value="lokal">Lokal</option>
-                                                    <option value="Mancanegara">Mancanegara</option>
-                                                </select>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div id="add-row_filter" class="dataTables_filter">
-                                            <form class="form-control-right" action="{{ route('admin.payment') }}"
-                                                method="GET">
-                                                <label>Search:<input type="search" class="form-control form-control-sm"
-                                                        placeholder="" value=" {{ old('cari') }}" name="cari"
-                                                        aria-controls="add-row"></label>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-sm-12">
-                                        <table id="add-row" class="table display table-striped table-hover dataTable"
+                                        <table id="table-confirm" class="table display table-striped table-hover dataTable"
                                             role="grid" aria-describedby="add-row_info">
                                             <thead>
                                                 <tr role="row">
@@ -150,30 +114,6 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-5">
-                                        <div class="dataTables_info" id="add-row_info" role="status" aria-live="polite">
-                                            Showing 1 to 5 of 10 entries</div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-7">
-                                        <div class="dataTables_paginate paging_simple_numbers" id="add-row_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled"
-                                                    id="add-row_previous"><a href="#" aria-controls="add-row"
-                                                        data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-                                                </li>
-                                                <li class="paginate_button page-item active"><a href="#"
-                                                        aria-controls="add-row" data-dt-idx="1" tabindex="0"
-                                                        class="page-link">1</a></li>
-                                                <li class="paginate_button page-item "><a href="#" aria-controls="add-row"
-                                                        data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                                <li class="paginate_button page-item next" id="add-row_next"><a href="#"
-                                                        aria-controls="add-row" data-dt-idx="3" tabindex="0"
-                                                        class="page-link">Next</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -181,6 +121,11 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#table-confirm').DataTable();
+        });
+    </script>
     <!--Modal Bukti Pembayaran-->
     @foreach ($pesanan as $data)
         <div class="modal fade" id="buktiPembayaran{{ $data->id }}" aria-hidden="true"

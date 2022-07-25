@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-4 col-sm-offset-4">
-                                                <button type="submit" class="btn btn-success">DAFTAR</button>
+                                                <button type="submit" class="btn btn-success btn-round">DAFTAR</button>
                                             </div>
                                         </div>
                                     </form>

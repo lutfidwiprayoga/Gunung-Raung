@@ -21,8 +21,13 @@ class ManagementKuotaController extends Controller
         $this->middleware(['auth', 'verified']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('cari')) {
+            $kuota = Kuota::where('periode_id', 'LIKE', '&' . $request->cari . '&')->paginate(30);
+        } else {
+            $kuota = Kuota::all();
+        }
         $kuota = Kuota::get();
         $periode = Periode::get();
         return view('admin.kuota.index', compact('kuota', 'periode'));

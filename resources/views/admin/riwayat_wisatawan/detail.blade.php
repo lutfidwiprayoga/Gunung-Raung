@@ -6,9 +6,8 @@
     <div class="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('admin.cetakpdf', $pdf->id) }}"><button class="btn btn-icon btn-round btn-primary"><i
-                            class="fas fa-file-pdf"></i></button> Cetak
-                    Tiket </a><br>
+                <a href="{{ route('admin.cetakpdf', $pesanan->id) }}"><button class="btn btn-icon btn-round btn-primary"><i
+                            class="fas fa-file-pdf"></i></button> CetakTiket </a><br>
                 <div class="row">
                     <!-- ================== Data Transaksi =================-->
                     <div class="col-md-4">
@@ -45,7 +44,8 @@
                                             <tr>
                                                 <th width="100px">TANGGAL NAIK</th>
                                                 <th width="30px">:</th>
-                                                <th>{{ date('l, d F Y', strtotime($wisatawan->tanggal_naik)) }}</th>
+                                                <th>{{ date('l, d F Y', strtotime($wisatawan->kuota->tanggal_pendakian)) }}
+                                                </th>
                                             </tr>
 
                                             <tr>
@@ -152,21 +152,26 @@
                                                 <th width="30px">:</th>
                                                 <th>{{ $wisatawan->no_hp }}</th>
                                             </tr>
-
-                                            <tr>
-                                                <th width="100px">ASAL KOTA</th>
-                                                <th width="30px">:</th>
-                                                <th>{{ $wisatawan->city->name }}</th>
-                                            </tr>
+                                            @if ($wisatawan->asal_kota == null)
+                                            @else
+                                                <tr>
+                                                    <th width="100px">ASAL KOTA</th>
+                                                    <th width="30px">:</th>
+                                                    <th>{{ $wisatawan->city->name }}</th>
+                                                </tr>
+                                            @endif
                                         </table>
                                     </div>
                                     <div class="col-md-6">
                                         <table class="table">
-                                            <tr>
-                                                <th width="100px">PROVINSI</th>
-                                                <th width="30px">:</th>
-                                                <th>{{ $wisatawan->province->name }}</th>
-                                            </tr>
+                                            @if ($wisatawan->provinsi == null)
+                                            @else
+                                                <tr>
+                                                    <th width="100px">PROVINSI</th>
+                                                    <th width="30px">:</th>
+                                                    <th>{{ $wisatawan->province->name }}</th>
+                                                </tr>
+                                            @endif
 
                                             <tr>
                                                 <th width="100px">PEKERJAAN</th>

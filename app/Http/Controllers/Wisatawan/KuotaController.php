@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Wisatawan;
 use App\Http\Controllers\Controller;
 use App\Models\Kuota;
 use App\Models\Periode;
+use App\Models\Wisatawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KuotaController extends Controller
 {

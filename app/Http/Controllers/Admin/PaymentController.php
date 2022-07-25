@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\Wisatawan\PaymentMailAcc;
 use App\Mail\Wisatawan\PaymentMailTolak;
 use App\Models\CetakPDF;
+use App\Models\Kuota;
 use App\Models\Notifikasi;
 use App\Models\Pesanan;
 use App\Models\Wisatawan;
@@ -62,6 +63,9 @@ class PaymentController extends Controller
         $notif = Notifikasi::find($id);
         $notif->read = True;
         $notif->save();
+        $kuota = Kuota::where('id', $pesanan->wisatawan->tanggal_id)->first();
+        $kuota->kuota -= $pesanan->jumlah_tiket;
+        $kuota->save();
         $data = array(
             'nama' => $pesanan->wisatawan->nama,
         );

@@ -59,34 +59,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group focused">
-                                        <label class="form-control-label">Perjalanan Mulai</label>
-                                        <input name="jadwal_mulai" type="date" id="date-input"
-                                            class="form-control form-control-alternative" data-date-format="dd/mm/yyyy"
-                                            value="{{ old('jadwal_mulai') }}">
-                                        <div class="text-danger">
-                                            @error('jadwal_mulai')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group focused">
-                                        <label class="form-control-label">Perjalanan Selesai</label>
-                                        <input name="jadwal_selesai" type="date" id="date-input"
-                                            class="form-control form-control-alternative" data-date-format="dd/mm/yyyy"
-                                            value="{{ old('jadwal_selesai') }}">
-                                        <div class="text-danger">
-                                            @error('jadwal_selesai')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group focused">
                                         <label class="form-control-label">Keterangan</label>

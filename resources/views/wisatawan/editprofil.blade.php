@@ -88,7 +88,7 @@
                                                         <label for="username">Username<font color="red">*</font></label>
                                                         <input type="text"
                                                             class="form-control-profile @error('username') is-invalid @enderror"
-                                                            name="username" id="username" value="{{ $user->username }}}"
+                                                            name="username" id="username" value="{{ $user->username }}"
                                                             required>
                                                         @error('username')
                                                             <span class="invalid-feedback" role="alert">

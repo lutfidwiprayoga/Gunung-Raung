@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-4 col-sm-offset-4">
-                                                <button type="submit" class="btn btn-success">Verifikasi</button>
+                                                <button type="submit" class="btn btn-success btn-round">Verifikasi</button>
                                             </div>
                                         </div>
                                     </form>

@@ -16,10 +16,9 @@ class CreateWisatawansTable extends Migration
         Schema::create('wisatawans', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->nullable();
-            $table->unsignedBigInteger('rating_id')->nullable();
             $table->integer('perjalanan_id')->nullable();
             $table->integer('kebangsaan_id')->nullable();
-            $table->date('tanggal_naik');
+            $table->integer('tanggal_id');
             $table->date('tanggal_turun');
             $table->string('jenis_identitas');
             $table->string('nomor_identitas');

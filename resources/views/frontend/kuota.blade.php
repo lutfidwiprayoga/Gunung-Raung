@@ -41,14 +41,20 @@
                                             </thead>
                                             <tbody id="kuota_id">
                                                 @foreach ($kuota as $item)
-                                                    <tr class="alt">
-                                                        <td class="text-center">
-                                                            {{ date('l, d F Y', strtotime($item->tanggal_pendakian)) }}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <span style="color: green;">{{ $item->kuota }}</span>
-                                                        </td>
-                                                    </tr>
+                                                    <form action="{{ route('booking.create') }}" method="GET">
+                                                        <tr class="alt">
+                                                            <td class="text-center">
+                                                                {{ date('l, d F Y', strtotime($item->tanggal_pendakian)) }}
+                                                            </td>
+                                                            <input type="text" name="id" value="{{ $item->id }}" hidden>
+                                                            <input type="date" name="tanggal_id"
+                                                                value="{{ $item->tanggal_pendakian }}" hidden>
+                                                            <td class="text-center">
+                                                                <button type="submit"
+                                                                    class="btn btn-link btn-md">{{ $item->kuota }}</button>
+                                                            </td>
+                                                        </tr>
+                                                    </form>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -74,10 +80,15 @@
                         $('#kuota_id').empty();
                         $.each(data, function(index, element) {
                             $('#kuota_id').append(
-                                "<tr><td class='text-center'>" + element
-                                .tanggal_pendakian + "</td><td class='text-center'>" +
+                                "<tr><td class='text-center'>" + moment(element
+                                    .tanggal_pendakian).format('dddd, D MMMM YYYY') +
+                                "</td><td class='text-center'><button type='submit' class='btn btn-link btn-md'>" +
                                 element.kuota +
-                                "</td></tr>");
+                                "</button></td><input type='text' name='id' value=" +
+                                element
+                                .id +
+                                " hidden><input type='date' name='tanggal_id' value=" +
+                                element.tanggal_pendakian + " hidden></tr>");
                         });
                     } else {
                         $('#kuota_id').empty();

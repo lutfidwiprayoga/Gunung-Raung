@@ -15,4 +15,8 @@ class Kuota extends Model
     {
         return $this->belongsTo(Periode::class, 'periode_id', 'id');
     }
+    public function wisatawans()
+    {
+        return $this->hasMany(Wisatawan::class);
+    }
 }

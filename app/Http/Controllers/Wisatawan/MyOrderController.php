@@ -89,12 +89,13 @@ class MyOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Tombol selesai pendakian
     public function edit($id)
     {
         $pesanan = Pesanan::where('id', $id)->first();
         $pesanan->status_pemesanan = 'Selesai';
         $pesanan->save();
-        return redirect()->route('myorder.index');
+        return redirect()->back();
     }
 
     /**
@@ -106,11 +107,7 @@ class MyOrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rating = Rating::where('id', $id)->first();
-        $rating->rating = $request->input('rating');
-        $rating->review = $request->review;
-        $rating->save();
-        return redirect()->back();
+        //
     }
 
     /**

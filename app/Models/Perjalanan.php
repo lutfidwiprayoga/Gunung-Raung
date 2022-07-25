@@ -9,7 +9,7 @@ class Perjalanan extends Model
 {
     use HasFactory;
     protected $table = 'perjalanans';
-    protected $fillable = ['user_id', 'nama_paket', 'jadwal_mulai', 'jadwal_selesai', 'harga_perjalanan', 'include'];
+    protected $fillable = ['user_id', 'nama_paket', 'tanggal_mulai', 'tanggal_selesai', 'harga_perjalanan', 'status', 'keterangan'];
 
     public function wisatawans()
     {

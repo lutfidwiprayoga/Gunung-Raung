@@ -6,9 +6,6 @@
     <div class="page-inner">
         <div class="row">
             <div class="col-md-12">
-                {{-- <a href="{{ route('admin.cetakpdf', $pdf->id) }}"><button class="btn btn-icon btn-round btn-primary"><i
-                            class="fas fa-file-pdf"></i></button> Cetak
-                    Tiket </a><br> --}}
                 <div class="row">
                     <!-- ================== Data Transaksi =================-->
                     <div class="col-md-4">
@@ -45,7 +42,7 @@
                                             <tr>
                                                 <th width="100px">TANGGAL NAIK</th>
                                                 <th width="30px">:</th>
-                                                <th>{{ date('l, d F Y', strtotime($pesanan->wisatawan->tanggal_naik)) }}
+                                                <th>{{ date('l, d F Y', strtotime($pesanan->wisatawan->kuota->tanggal_pendakian)) }}
                                                 </th>
                                             </tr>
 

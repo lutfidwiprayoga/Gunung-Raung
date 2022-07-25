@@ -46,17 +46,14 @@ class PerjalananController extends Controller
     {
         $this->validate($request, [
             'nama_paket' => 'required',
-            'jadwal_mulai' => 'required',
-            'jadwal_selesai' => 'required',
             'harga_perjalanan' => 'required',
             'keterangan' => 'required',
         ]);
         $guide = new Perjalanan();
         $guide->nama_paket = $request->nama_paket;
-        $guide->jadwal_mulai = $request->jadwal_mulai;
-        $guide->jadwal_selesai = $request->jadwal_selesai;
         $guide->harga_perjalanan = $request->harga_perjalanan;
         $guide->keterangan = $request->keterangan;
+        $guide->status = 'Belum aktif';
         $guide->user_id = Auth::user()->id;
         $guide->save();
 
@@ -103,7 +100,12 @@ class PerjalananController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $perjalanan = Perjalanan::find($id);
+        $perjalanan->tanggal_mulai = $request->tanggal_mulai;
+        $perjalanan->tanggal_selesai = $request->tanggal_selesai;
+        $perjalanan->status = $request->status;
+        $perjalanan->save();
+        return redirect()->back();
     }
 
     /**

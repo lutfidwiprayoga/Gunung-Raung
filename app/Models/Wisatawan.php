@@ -10,11 +10,19 @@ class Wisatawan extends Model
     use HasFactory;
     protected $table = 'wisatawans';
     protected $fillable = [
-        'kebangsaan_id', 'tanggal_naik', 'tanggal_turun', 'jenis_identitas', 'nomor_identitas', 'nama', 'email',
+        'kebangsaan_id', 'tanggal_id', 'tanggal_turun', 'jenis_identitas', 'nomor_identitas', 'nama', 'email',
         'tanggal_lahir', 'jenis_kelamin', 'alamat', 'no_hp', 'pekerjaan', 'asal_kota', 'provinsi',
         'foto_identitas', 'user_id', 'perjalanan_id',
     ];
 
+    public function perjalanan()
+    {
+        return $this->belongsTo(Perjalanan::class, 'perjalanan_id', 'id');
+    }
+    public function kuota()
+    {
+        return $this->belongsTo(Kuota::class, 'tanggal_id', 'id');
+    }
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
@@ -22,10 +30,6 @@ class Wisatawan extends Model
     public function pesanans()
     {
         return $this->hasMany(Pesanan::class, 'ketua_id', 'id');
-    }
-    public function perjalanan()
-    {
-        return $this->belongsTo(Perjalanan::class, 'perjalanan_id', 'id');
     }
     public function wisatawananggotas()
     {
